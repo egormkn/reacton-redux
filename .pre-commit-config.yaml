@@ -47,6 +47,7 @@ repos:
         types: [ python ]
         stages: [ pre-commit, manual ]
         require_serial: true
+        exclude: ^tests/
       - id: ruff
         name: ruff
         language: system

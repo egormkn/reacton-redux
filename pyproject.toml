@@ -40,3 +40,8 @@ line_length = 120
 profile = "black"
 skip_gitignore = true
 src_paths = ["src", "tests"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
