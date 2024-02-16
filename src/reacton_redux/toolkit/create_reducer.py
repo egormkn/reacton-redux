@@ -10,7 +10,7 @@ from .immer import create_next_state, is_draft, is_draftable
 
 S = TypeVar("S")
 
-A = TypeVar("A", bound=Action)
+A = TypeVar("A", bound=Action[Any, Any, Any])
 
 T = TypeVar("T")
 
@@ -85,7 +85,7 @@ def create_reducer(
             state = get_initial_state()
 
         case_reducers: list[Reducer[Any, Any] | None] = [
-            actions_map[action.type],
+            actions_map[action["type"]],
             *(reducer for matcher, reducer in action_matchers if matcher(action)),
         ]
 

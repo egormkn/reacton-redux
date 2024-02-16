@@ -1,44 +1,49 @@
-from typing import Any, Callable, Generic, Protocol, TypeAlias, TypeVar
+from typing import Any, Callable, Generic, TypeAlias, TypeVar
+
+from typing_extensions import NotRequired, TypedDict
 
 from ..types.actions import Action
 
-Error = TypeVar("Error")
+Payload = TypeVar("Payload")
 
 Meta = TypeVar("Meta")
 
-Payload = TypeVar("Payload")
+Error = TypeVar("Error")
 
 
-class PreparedActionProto(Protocol[Error, Meta, Payload]):
-    error: Error
-    meta: Meta
-    payload: Payload
+class PreparedAction(TypedDict, Generic[Payload, Meta, Error]):
+    payload: NotRequired[Payload]
+    meta: NotRequired[Meta]
+    error: NotRequired[Error]
 
 
-PrepareAction: TypeAlias = Callable[..., PreparedActionProto[Error, Meta, Payload]]
+PrepareAction: TypeAlias = Callable[..., PreparedAction[Payload, Meta, Error]]
 
 
-class ActionCreator(Generic[Error, Meta, Payload]):
-    def __init__(self, type: str, prepare_action: PrepareAction[Error, Meta, Payload] | None = None):
+class ActionCreator(Generic[Payload, Meta, Error]):
+    def __init__(self, type: str, prepare_action: PrepareAction[Payload, Meta, Error] | None = None):
         self.type = type
         self.prepare_action = prepare_action
 
-    def __call__(self, *args, **kwargs) -> Action[Error, Meta, Payload]:
+    def __call__(self, *args, **kwargs) -> Action[Payload, Meta, Error]:
         if self.prepare_action is not None:
             prepared = self.prepare_action(*args, **kwargs)
-            return Action(
-                type=self.type,
-                payload=prepared.payload,
-                meta=prepared.meta if hasattr(prepared, "meta") else None,
-                error=prepared.error if hasattr(prepared, "error") else None,
-            )
-        return Action(type=self.type, payload=args[0])
+            action: Action = {"type": self.type}
+            if "payload" in prepared:
+                action["payload"] = prepared["payload"]
+            if "meta" in prepared:
+                action["meta"] = prepared["meta"]
+            if "error" in prepared:
+                action["error"] = prepared["error"]
+            return action
+        # noinspection PyTypeChecker
+        return {"type": self.type, "payload": args[0]}
 
     def __str__(self):
         return self.type
 
     def match(self, action: Action[Any, Any, Any]) -> bool:
-        return self.type == action.type
+        return self.type == action["type"]
 
 
 create_action = ActionCreator

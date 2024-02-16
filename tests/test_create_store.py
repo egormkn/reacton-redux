@@ -1,6 +1,6 @@
 import pytest
 
-from reacton_redux import Action, create_store
+from reacton_redux import create_store
 
 
 @pytest.fixture
@@ -8,9 +8,9 @@ def counter_reducer():
     def reducer(state: int | None, action):
         if state is None:
             return 0
-        elif action.type == "increment":
+        elif action["type"] == "increment":
             return state + 1
-        elif action.type == "decrement":
+        elif action["type"] == "decrement":
             return state - 1
         return state
 
@@ -31,9 +31,9 @@ def test_store_get_state_returns_state(counter_store):
 
 
 def test_store_dispatch_modifies_state(counter_store):
-    counter_store.dispatch(Action("increment"))
+    counter_store.dispatch({"type": "increment"})
     assert counter_store.get_state() == 1
-    counter_store.dispatch(Action("decrement"))
+    counter_store.dispatch({"type": "decrement"})
     assert counter_store.get_state() == 0
 
 
@@ -46,7 +46,7 @@ def test_store_subscribe_subscribes_to_state_updates(counter_store):
 
     counter_store.subscribe(on_update)
     assert times_called == 0
-    counter_store.dispatch(Action("increment"))
+    counter_store.dispatch({"type": "increment"})
     assert times_called == 1
-    counter_store.dispatch(Action("decrement"))
+    counter_store.dispatch({"type": "decrement"})
     assert times_called == 2

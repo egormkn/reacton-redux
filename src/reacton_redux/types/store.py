@@ -1,8 +1,8 @@
-from typing import Callable, Protocol, TypeAlias, TypeVar
+from typing import Any, Callable, Protocol, TypeAlias, TypeVar
 
 from .actions import Action
 
-A = TypeVar("A", bound=Action)
+A = TypeVar("A", bound=Action[Any, Any, Any])
 
 
 class Dispatch(Protocol[A]):

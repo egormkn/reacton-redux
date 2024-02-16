@@ -1,10 +1,10 @@
-from typing import Protocol, TypeVar
+from typing import Any, Protocol, TypeVar
 
 from .actions import Action
 
 S = TypeVar("S")
 
-A = TypeVar("A", bound=Action)
+A = TypeVar("A", bound=Action[Any, Any, Any])
 
 
 class Reducer(Protocol[S, A]):  # type: ignore[misc]

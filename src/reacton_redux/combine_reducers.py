@@ -1,12 +1,12 @@
 from types import SimpleNamespace
-from typing import TypeVar, cast
+from typing import Any, TypeVar, cast
 
 from .types.actions import Action
 from .types.reducers import Reducer
 
 S = TypeVar("S")
 
-A = TypeVar("A", bound=Action)
+A = TypeVar("A", bound=Action[Any, Any, Any])
 
 CS = TypeVar("CS")
 

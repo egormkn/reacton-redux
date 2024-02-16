@@ -1,4 +1,4 @@
-from typing import Callable, Generic, TypeVar
+from typing import Any, Callable, Generic, TypeVar
 
 from .types.actions import Action
 from .types.reducers import Reducer
@@ -6,7 +6,7 @@ from .types.store import ListenerCallback
 
 S = TypeVar("S")
 
-A = TypeVar("A", bound=Action)
+A = TypeVar("A", bound=Action[Any, Any, Any])
 
 
 class Store(Generic[S, A]):
@@ -16,7 +16,7 @@ class Store(Generic[S, A]):
         self.listeners: set[ListenerCallback] = set()
         self.is_dispatching = False
 
-        self.dispatch(Action("@@INIT"))  # type: ignore[arg-type]
+        self.dispatch({"type": "@@INIT"})  # type: ignore[arg-type]
 
     def get_state(self) -> S | None:
         if self.is_dispatching:
