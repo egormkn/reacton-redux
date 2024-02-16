@@ -1,4 +1,4 @@
-from typing import Any, Callable, Generic, TypeVar
+from typing import Any, Callable, Generic, TypeVar, cast
 
 from .types.actions import Action
 from .types.reducers import Reducer
@@ -12,13 +12,13 @@ A = TypeVar("A", bound=Action[Any, Any, Any])
 class Store(Generic[S, A]):
     def __init__(self, reducer: Reducer[S, A]) -> None:
         self.reducer = reducer
-        self.state: S | None = None
+        self.state: S = cast(S, None)
         self.listeners: set[ListenerCallback] = set()
         self.is_dispatching = False
 
         self.dispatch({"type": "@@INIT"})  # type: ignore[arg-type]
 
-    def get_state(self) -> S | None:
+    def get_state(self) -> S:
         if self.is_dispatching:
             raise Exception("You may not call store.get_state() while the reducer is executing")
         return self.state
