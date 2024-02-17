@@ -1,4 +1,6 @@
-from typing import Any, Callable, Iterable, TypeVar, cast
+from __future__ import annotations
+
+from typing import Any, Callable, Iterable, Optional, TypeVar, cast
 
 import reacton
 
@@ -10,7 +12,7 @@ S = TypeVar("S")
 
 T = TypeVar("T")
 
-store_context = reacton.create_context(cast(Store | None, None))
+store_context = reacton.create_context(cast(Optional[Store], None))
 
 
 @reacton.component
