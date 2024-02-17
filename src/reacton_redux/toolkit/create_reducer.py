@@ -8,7 +8,7 @@ from typing_extensions import Self
 from ..types.actions import Action
 from ..types.reducers import Reducer
 from .create_action import ActionCreator
-from .immer import create_next_state, is_draft, is_draftable
+from .immer import is_draft, is_draftable, produce
 
 S = TypeVar("S")
 
@@ -17,9 +17,9 @@ A = TypeVar("A", bound=Action[Any, Any, Any])
 T = TypeVar("T")
 
 
-def freeze_draftable(value: T):
+def freeze_draftable(value: T) -> T:
     if is_draftable(value):
-        return create_next_state(value, lambda: None)
+        return produce(value, lambda _: None)
     return value
 
 
@@ -112,14 +112,12 @@ def create_reducer(
                     result = case_reducer(previous_state, action)
                     if result is None:
                         """
-                        if (previousState === null) {
-                          return previousState
-                        }
+                        if (previousState === null) return previousState
                         """
                         raise Exception("A case reducer on a non-draftable value must not return None")
                     return result
                 else:
-                    return create_next_state(previous_state, lambda draft: case_reducer(draft, action))
+                    return produce(previous_state, lambda draft: case_reducer(draft, action))
 
             return previous_state
 
