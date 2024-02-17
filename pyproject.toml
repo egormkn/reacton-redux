@@ -2,8 +2,20 @@
 name = "reacton-redux"
 version = "0.1.0"
 description = "State management and data fetching library for Reacton inspired by Redux and Tanstack Query"
+license = "MIT"
 authors = ["Egor Makarenko <egormkn@yandex.ru>"]
 readme = "README.md"
+repository = "https://github.com/egormkn/reacton-redux"
+keywords = ["reacton", "redux", "solara", "voila", "jupyter"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Framework :: IPython",
+    "Framework :: Jupyter",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Software Development :: Widget Sets"
+]
 packages = [
     { include = "reacton_redux", from = "src" },
     { include = "tests", format = "sdist" }
