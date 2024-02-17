@@ -10,9 +10,9 @@ A = TypeVar("A", bound=Action[Any, Any, Any])
 
 
 class Store(Generic[S, A]):
-    def __init__(self, reducer: Reducer[S, A]) -> None:
+    def __init__(self, reducer: Reducer[S, A], preloaded_state: S | None = None) -> None:
         self.reducer = reducer
-        self.state: S = cast(S, None)
+        self.state: S = cast(S, preloaded_state)
         self.listeners: set[ListenerCallback] = set()
         self.is_dispatching = False
 
