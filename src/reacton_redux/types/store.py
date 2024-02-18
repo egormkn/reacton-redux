@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Callable, Protocol, TypeAlias, TypeVar
+from typing import Any, Callable, Protocol, TypeVar
+
+from typing_extensions import TypeAlias
 
 from .actions import Action
 from .reducers import Reducer

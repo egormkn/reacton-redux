@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Callable, Generic, TypeAlias, TypeVar
+from typing import Any, Callable, Generic, TypeVar
 
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import NotRequired, TypeAlias, TypedDict
 
 from ..types.actions import Action
 
