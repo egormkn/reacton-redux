@@ -12,20 +12,19 @@ State management and data-fetching library for [Reacton](https://github.com/widg
 ## Installation
 
 ```bash
-pip install git+https://github.com/egormkn/reacton-redux.git
+pip install reacton-redux
 ```
 
 # Roadmap
 
 - [x] `create_store`
 - [x] `combine_reducers`
+- [x] `compose`
 - [x] `toolkit.create_action`
 - [x] `toolkit.create_reducer`
 - [ ] `toolkit.immer`
-- [ ] Pythonic API for builder callback notation
-- [ ] `compose`
-- [ ] `middleware`
 - [ ] store enhancers
+- [ ] `apply_middleware`
 - [ ] Examples
 - [ ] Tests
 - [ ] Documentation
