@@ -20,14 +20,14 @@ pip install reacton-redux
 - [x] `create_store`
 - [x] `combine_reducers`
 - [x] `compose`
+- [x] `apply_middleware`
 - [x] `toolkit.create_action`
 - [x] `toolkit.create_reducer`
 - [ ] `toolkit.immer`
-- [ ] store enhancers
-- [ ] `apply_middleware`
+- [ ] `toolkit.create_slice`
+- [ ] Documentation
 - [ ] Examples
 - [ ] Tests
-- [ ] Documentation
 
 ## Links
 
