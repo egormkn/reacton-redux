@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 
 from reacton_redux import create_store
