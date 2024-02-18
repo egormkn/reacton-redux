@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "reacton-redux"
 version = "0.1.0"
-description = "State management and data fetching library for Reacton inspired by Redux and Tanstack Query"
+description = "A Python implementation of Redux and Redux Toolkit with bindings for Reacton/Solara"
 license = "MIT"
 authors = ["Egor Makarenko <egormkn@yandex.ru>"]
 readme = "README.md"

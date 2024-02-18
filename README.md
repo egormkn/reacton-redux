@@ -1,6 +1,6 @@
 # Reacton Redux
 
-State management and data-fetching library for [Reacton](https://github.com/widgetti/reacton) inspired by [Redux](https://redux.js.org/) and [Tanstack Query](https://tanstack.com/query)
+A Python implementation of [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) with bindings for [Reacton](https://reacton.solara.dev/)/[Solara](https://solara.dev/)
 
 [![PyPI - Version](https://img.shields.io/pypi/v/reacton-redux.svg)](https://pypi.org/project/reacton-redux/)
 [![PyPI - License](https://img.shields.io/pypi/l/reacton-redux)](https://github.com/egormkn/reacton-redux/blob/main/LICENSE)
