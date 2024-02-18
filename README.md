@@ -21,6 +21,10 @@ pip install reacton-redux
 - [x] `combine_reducers`
 - [x] `compose`
 - [x] `apply_middleware`
+- [x] `reacton.StoreProvider`
+- [x] `reacton.use_store`
+- [x] `reacton.use_selector`
+- [x] `reacton.use_dispatch`
 - [x] `toolkit.create_action`
 - [x] `toolkit.create_reducer`
 - [ ] `toolkit.immer`
