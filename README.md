@@ -12,7 +12,7 @@ A Python implementation of [Redux](https://redux.js.org/) and [Redux Toolkit](ht
 ## Installation
 
 ```bash
-pip install reacton-redux
+pip install "reacton-redux[devtools]"
 ```
 
 # Roadmap
