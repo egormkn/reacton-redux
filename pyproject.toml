@@ -22,10 +22,12 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
+importlib-metadata = "*"
 ipython = "*"
+ipyvuetify = { version = "*", optional = true }
 python = "^3.8"
 reacton = "*"
-typing-extensions = "^4.9.0"
+typing-extensions = "*"
 
 [tool.poetry.group.dev.dependencies]
 black = { extras = ["d"], version = "^24.2.0" }
@@ -36,6 +38,9 @@ ruff = "^0.2.1"
 [tool.poetry.group.test.dependencies]
 coverage = "^7.4.1"
 pytest = "^8.0.0"
+
+[tool.poetry.extras]
+devtools = ["ipyvuetify"]
 
 [build-system]
 requires = ["poetry-core"]
