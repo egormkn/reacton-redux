@@ -38,8 +38,11 @@ class ActionCreator(Generic[Payload, Meta, Error]):
             if "error" in prepared:
                 action["error"] = prepared["error"]
             return action
+        if args:
+            # noinspection PyTypeChecker
+            return {"type": self.type, "payload": args[0]}
         # noinspection PyTypeChecker
-        return {"type": self.type, "payload": args[0]}
+        return {"type": self.type}
 
     def __str__(self):
         return self.type
